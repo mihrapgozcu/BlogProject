@@ -1,0 +1,429 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/BlogProject.Web.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="~/stand-blog/assets/css/fontawesome.css">
+    <link rel="stylesheet" href="~/stand-blog/assets/css/templatemo-stand-blog.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- CSS CDN -->
+    <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+
+    <style>
+        body {
+            color: black;
+            font-family: 'Cascadia Mono', sans-serif;
+            background-color: #F7DCB9;
+        }
+
+        label {
+            color: black;
+            font-weight: bold;
+        }
+
+        input[type=text],
+        input[type=file],
+        input[type=email],
+        textarea[type=text],
+        select[class=form-control],
+        .pagination .page-item .page-link {
+            border-style: solid;
+            border-width: 2px;
+        }
+
+        h5 {
+            font-weight: bold;
+        }
+
+        .post-excerpt {
+            color: black;
+        }
+
+        .post-tags,
+        .post-share {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+            .post-tags li,
+            .post-share li {
+                display: inline;
+                margin-right: 10px;
+            }
+
+                .post-tags li i,
+                .post-share li i {
+                    color: black;
+                }
+
+
+
+        .blog-post {
+            border-width: 3px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+            .blog-post:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            }
+
+        .blog-thumb img {
+            width: 100%;
+            height: auto;
+            border-bottom: 3px solid #8B4513;
+        }
+
+        .down-content {
+            padding: 20px;
+        }
+
+        .post-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: darkred;
+        }
+
+        .post-info li {
+            display: inline;
+            margin-right: 15px;
+            color:black;
+        }
+
+        .post-excerpt {
+            margin-top: 15px;
+            color: black;
+        }
+
+        .post-tags li {
+            display: inline;
+            margin-right: 10px;
+            color: darkred;
+        }
+
+        .read-more {
+            color: #8B4513;
+            font-weight: bold;
+        }
+
+
+        header {
+            background-color: #8B4513;
+            color: white;
+            padding: 0;
+            text-align: center;
+        }
+
+        .navbar {
+            background-color: #8B4513;
+            padding: 20px;
+        }
+
+        .navbar-header {
+            flex: 1;
+        }
+
+        .navbar-brand h2 {
+            margin: 0;
+        }
+
+        .nav-link {
+            color: #fff !important;
+            font-weight: bold;
+        }
+
+        .nav-item {
+            margin-right: 20px;
+        }
+
+        .dropdown-menu {
+            background-color: #3E2723;
+        }
+
+        .dropdown-item {
+            color: #fff !important;
+        }
+
+            .dropdown-item:hover {
+                background-color: #6D4C41;
+            }
+
+        .navbar-toggler-icon {
+            color: #fff;
+        }
+
+        .navbar-toggler:hover,
+        .navbar-toggler:active,
+        .navbar-toggler:focus {
+            background-color: #6D4C41;
+            border-color: transparent;
+        }
+
+        footer {
+            background-color: #8B4513;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+            footer .social-icons {
+                padding: 0;
+                margin: 0 0 10px;
+                list-style: none;
+            }
+
+                footer .social-icons li {
+                    display: inline;
+                    margin-right: 10px;
+                }
+
+                    footer .social-icons li a {
+                        color: white;
+                        text-decoration: none;
+                        font-size: 24px;
+                    }
+
+                        footer .social-icons li a:hover {
+                            color:black;
+                        }
+
+            footer h5 {
+                margin: 10px 0 0;
+                padding: 0;
+                color: white;
+            }
+
+            footer p {
+                margin: 0;
+                color: black;
+            }
+
+        .container-xxl {
+            padding: 20px;
+        }
+
+        .card {
+            border: 2px solid #8B4513;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            background-color: #8B4513;
+            color: white;
+            font-weight: bold;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            font-weight: bold;
+            color: #8B4513;
+        }
+
+        .form-control {
+            border: 2px solid #8B4513;
+            border-radius: 5px;
+        }
+
+        .btn-dark {
+            background-color: #8B4513;
+            border: none;
+            color: black;
+        }
+
+            .btn-dark:hover {
+                background-color: #6D4C41;
+                color: white;
+            }
+
+        .modal-header, .modal-footer {
+            background-color: #8B4513;
+            color: white;
+        }
+
+        .modal-title {
+            font-weight: bold;
+        }
+
+        .close {
+            color: white;
+        }
+
+
+
+
+
+
+        .table th,
+        .table td {
+            border: 2px solid #8B4513;
+        }
+
+        .btn-primary {
+            background-color: #8B4513;
+            border-color: #8B4513;
+        }
+
+            .btn-primary:hover {
+                background-color: #6D4C41;
+                border-color: #6D4C41;
+            }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+
+            .btn-danger:hover {
+                background-color: #c82333;
+                border-color: #bd2130;
+            }
+
+        .text-muted {
+            color: #6c757d !important;
+        }
+
+      
+
+    </style>
+</head>
+<body>
+    <!-- Preloader Start -->
+    <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index"><h2 style="color: #fff;">Blog_Blog</h2></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" asp-area="Admin" asp-controller="Home" asp-action="Index">
+                                <i class='bx bxs-hard-hat'></i> Admin Paneli
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Article" asp-action="Create">
+                                <i class='bx bx-book'></i> Makale Yaz
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class='bx bx-user-circle'></i> Profilim
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" asp-area="" asp-controller="User" asp-action="Profile"> <i class='bx bxs-user-detail'></i> Profil Bilgilerim </a>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Authorize" asp-action="Logout"> <i class='bx bxs-user-x'></i> Çıkış Yap </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <!-- Banner -->
+    <div class="main-banner header-text">
+        <div class="container-fluid">
+            <!-- Banner Content -->
+        </div>
+    </div>
+    <!-- Banner Ends Here -->
+    <!-- Additional Content -->
+    <div style="height:50px;"></div>
+
+    @RenderBody()
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="social-icons">
+                        <li><a href="https://www.linkedin.com/in/mihrap-gözcü-19749013a/" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+                        <li><a href="https://github.com/mgozcuu" target="_blank"><i class="fab fa-github"></i></a></li>
+                        <li><a href="https://twitter.com/mihrapgozcu" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="https://www.instagram.com/mihrapgozcu/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                    </ul>
+                    <h5>Blog_Blog 2024 Son Sürüm</h5>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="~/stand-blog/vendor/jquery/jquery.min.js"></script>
+    <script src="~/stand-blog/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Additional Scripts -->
+    <script src="~/stand-blog/assets/js/custom.js"></script>
+    <script src="~/stand-blog/assets/js/owl.js"></script>
+    <script src="~/stand-blog/assets/js/slick.js"></script>
+    <script src="~/stand-blog/assets/js/isotope.js"></script>
+    <script src="~/stand-blog/assets/js/accordions.js"></script>
+
+    <!-- DataTables JavaScript -->
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.3/js/dataTables.buttons.min.js" crossorigin="anonymous"></script>
+
+    <!-- Site Scripts -->
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+  
+   @*  @await RenderSectionAsync("Scripts", false) *@
+</body>
+</html>
+
+
+
+<script language="text/Javascript">
+    cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
+    function clearField(t) {                   //declaring the array outside of the
+        if (!cleared[t.id]) {                      // function makes it static and global
+            cleared[t.id] = 1;  // you could use true and false, but that's more typing
+            t.value = '';         // with more chance of typos
+            t.style.color = '#fff';
+        }
+    }
+</script>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+
+@* Article/Index.cshtml içine yazdığımız script'i çalıştırmak için *@
+@await RenderSectionAsync("Scripts", false);
+
+

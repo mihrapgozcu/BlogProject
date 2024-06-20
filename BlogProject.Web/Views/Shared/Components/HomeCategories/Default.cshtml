@@ -1,0 +1,13 @@
+﻿@model List<CategoryVM>
+
+
+<div class="content">
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li><a asp-controller="Home" asp-action="Index" asp-route-categoryId="@item.Id"> @item.Name </a></li>
+            @* Kategori adına tıklayınca o kategoriye ait makaleler gelmesi için Index'e yönlendirdik. Oradaki GetAllByPaging metodu categoryId'sine göre makaleleri getiriyor. *@
+            @* ****Metotta parametre olarak categoryId yazmıştık. Burada Route'da id yazınca hata aldık. categoryId olarak yazınca hata düzeldi. DİKKAT!!! *@
+        }
+    </ul>
+</div>

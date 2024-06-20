@@ -1,0 +1,92 @@
+﻿@model AuthorDetailVM
+
+
+<div class="container-xxl flex-grow-1 container-p-y">
+
+    <div style="height:80px;"></div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-4">
+
+                <h5 class="card-header"> <i class='bx bxs-user-circle'></i> @Model.FirstName @Model.LastName Profil Bilgisi </h5>
+
+                <div class="card-body">
+
+                    <div class="form-group">
+                        <div class="d-flex justify-content-center">
+                            <img src="~/images/@Model.Path" class="border border-dark border-2 rounded" height="300px" width="350px" id="uploadedAvatar">
+                        </div>
+                    </div>
+
+                </div>
+
+                <hr class="my-0">
+                <div class="card-body">
+                    <div class="row">
+
+                        <div class="mb-3 col-md-6 mt-3">
+                            <label asp-for="FirstName" class="form-label"> <i class='bx bx-child'></i> İsim</label>
+                            <input asp-for="FirstName" class="form-control" type="text" autofocus="" disabled>
+                        </div>
+
+                        <div class="mb-3 col-md-6 my-3">
+                            <label asp-for="LastName" class="form-label"> <i class='bx bx-child'></i> Soyisim</label>
+                            <input asp-for="LastName" class="form-control" type="text" autofocus="" disabled>
+                        </div>
+
+                        <div class="mb-3 col-md-6">
+                            <label asp-for="Email" class="form-label"> <i class='bx bx-envelope'></i> Email</label>
+                            <input asp-for="Email" class="form-control" type="email" autofocus="" disabled>
+                        </div>
+
+                        <div class="mb-3 col-md-6">
+                            <label asp-for="PhoneNumber" class="form-label"> <i class='bx bx-phone'></i> Telefon Numarası</label>
+                            <input asp-for="PhoneNumber" class="form-control" type="text" autofocus="" disabled>
+                        </div>
+
+                        <div class="mb-3 col-md-6">
+                            <label asp-for="About" class="form-label"> <i class='bx bxs-id-card'></i> Hakkında</label>
+                            <textarea asp-for="About" class="form-control" type="text" autofocus="" disabled></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12">
+
+                    <h5 class="card-header"> <i class='bx bx-book'></i> @Model.FirstName @Model.LastName Makaleleri </h5>
+
+                    <table class="table table-bordered mt-3" id="articlesTable" width="100%" collspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Başlık</th>
+                                <th>Kategori</th>
+                                <th>Oluşturulma Tarihi</th>
+                                <th>İşlem</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-border-bottom-0">
+                            @foreach (var item in Model.Articles)
+                            {
+                                <tr name="@item.Id">
+                                    <td> @item.Title </td>
+                                    <td> @item.Category.Name </td>
+                                    <td> @item.CreatedDate.ToShortDateString() </td>
+                                    <td>
+                                        <a class="btn btn-dark btn-sm" data-id="@item.Id" asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id" style="color:darkmagenta"> Makaleyi Oku </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+
+                <div class="mt-4">
+                    <a asp-controller="Home" asp-action="Index" type="submit" class="btn btn-dark d-flex justify-content-center d-grid gap-2 col-4 mx-auto" style="color:darkmagenta"> Ana Sayfaya Dön </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

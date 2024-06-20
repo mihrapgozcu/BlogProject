@@ -1,0 +1,97 @@
+﻿@model UserProfileVM
+
+<div class="container-xxl flex-grow-1 container-p-y">
+
+    <div style="height:80px;"></div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-4">
+                <h5 class="card-header"> <i class='bx bxs-user-detail'></i> Profil Bilgilerim </h5>
+                <form asp-controller="User" asp-action="Profile" method="post" enctype="multipart/form-data">
+                    <!-- Account -->
+                    <div class="card-body">
+
+                        <div class="form-group">
+                            <div class="d-flex justify-content-center">
+                                <img src="~/images/@Model.Path" class="border border-dark border-2 rounded" height="300px" width="350px" id="uploadedAvatar">
+                            </div>
+                            
+                            <input asp-for="Photo" type="file" accept="image/*" class="form-control mb-3 mt-3" id="defaultFormControlInput" aria-describedby="defaultFormControlHelp" />
+                        </div>
+
+                    </div>
+                    <hr class="my-0">
+                    <div class="card-body">
+
+                        <div asp-validation-summary="All" class="text-danger"></div>
+
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="row">
+
+                            <div class="mb-3 col-md-6">
+                                <label asp-for="FirstName" class="form-label">
+                                    <i class='bx bx-child'></i> İsim
+                                </label>
+                                <input asp-for="FirstName" class="form-control" type="text" autofocus="">
+                                <span asp-validation-for="FirstName"></span>
+                            </div>
+
+                            <div class="mb-3 col-md-6">
+                                <label asp-for="LastName" class="form-label">
+                                    <i class='bx bx-child'></i> Soyisim
+                                </label>
+                                <input asp-for="LastName" class="form-control" type="text" autofocus="">
+                                <span asp-validation-for="LastName"></span>
+                            </div>
+
+                            <div class="mb-3 col-md-6">
+                                <label asp-for="CurrentPassword" class="form-label">
+                                    <i class='bx bxs-key'></i> Mevcut Parola (Zorunlu)
+                                </label>
+                                <input asp-for="CurrentPassword" class="form-control" type="text" autofocus="">
+                                <span asp-validation-for="CurrentPassword"></span>
+                            </div>
+
+                            <div class="mb-3 col-md-6">
+                                <label asp-for="NewPassword" class="form-label">
+                                    <i class='bx bxs-key'></i> Yeni Parola (Opsiyonel)
+                                </label>
+                                <input asp-for="NewPassword" class="form-control" type="text" autofocus="">
+                                <span asp-validation-for="NewPassword"></span>
+                            </div>
+
+                            <div class="mb-3 col-md-6">
+                                <label asp-for="PhoneNumber" class="form-label">
+                                    <i class='bx bx-phone'></i> Telefon Numarası
+                                </label>
+                                <input asp-for="PhoneNumber" class="form-control" type="text" autofocus="">
+                                <span asp-validation-for="PhoneNumber"></span>
+                            </div>
+
+                            <div class="mb-3 col-md-6">
+                                <label asp-for="About" class="form-label">
+                                    <i class='bx bxs-id-card'></i> Hakkımda
+                                </label>
+                                <textarea asp-for="About" class="form-control" style="min-height:100px;" type="text" autofocus=""></textarea>
+                                <span asp-validation-for="About"></span>
+                            </div>
+
+                        </div>
+
+                        <div class="mt-2">
+                            <button type="submit" class="btn btn-dark me-2" style="color:black"> Profili Güncelle </button>
+                        </div>
+
+                        <div class="mt-2">
+                            <a asp-area="" asp-controller="User" asp-action="Delete" asp-route-id="@Model.Id" type="submit" class="btn btn-danger me-2"> Hesabı Sil </a>
+                        </div>
+
+                    </div>
+                    <!-- /Account -->
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

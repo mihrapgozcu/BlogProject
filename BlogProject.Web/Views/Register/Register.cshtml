@@ -1,0 +1,273 @@
+﻿@model UserRegisterVM
+
+@{
+    Layout = null;
+}
+
+
+<html lang="en" class="light-style  customizer-hide" dir="ltr" data-theme="theme-default" data-assets-path="~/sneat/assets/" data-template="vertical-menu-template-free">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+    <title> Kayıt Ol </title>
+
+    <meta name="description" content="Most Powerful &amp; Comprehensive Bootstrap 5 HTML Admin Dashboard Template built for developers!" />
+    <meta name="keywords" content="dashboard, bootstrap 5 dashboard, bootstrap 5 design, bootstrap 5">
+    <!-- Canonical SEO -->
+    <link rel="canonical" href="https://themeselection.com/products/sneat-bootstrap-html-admin-template/">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="~/sneat/assets/img/favicon/favicon.ico" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/sneat/assets/vendor/fonts/boxicons.css" />
+
+
+
+   
+    <link rel="stylesheet" href="~/sneat/assets/vendor/css/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="~/sneat/assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="~/sneat/assets/css/demo.css" />
+
+    <link rel="stylesheet" href="~/sneat/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+
+
+
+    
+    <link rel="stylesheet" href="~/sneat/assets/vendor/css/pages/page-auth.css">
+    
+    <script src="~/sneat/assets/vendor/js/helpers.js"></script>
+
+    
+    <script src="~/sneat/assets/js/config.js"></script>
+
+   
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+    
+
+<style>
+        body {
+            background-color: #E5C287;
+            font-family: 'Public Sans', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+       
+
+        .container xl{
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        
+        footer {
+            background-color: #F4EDCC;
+            padding: 10px 0;
+            border-top: 1px solid #ddd;
+            width: 100%;
+            text-align: center;
+        }
+
+            footer ul {
+                list-style: none;
+                padding: 0;
+            }
+
+                footer ul li {
+                    display: inline;
+                    margin-right: 10px;
+                }
+
+            footer a {
+                color: #DEAC80;
+                text-decoration: none;
+            }
+
+                footer a:hover {
+                    color: #4a90e2;
+                }
+
+        /* Kartı tam ekran genişliğinde yapalım */
+        .card {
+            background-color: #F4EDCC;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+        }
+
+        /* Resim bölümünü ayarlayalım */
+        .card-image {
+            flex: 1;
+            overflow: hidden; /* Resmin dışına taşan kısımları gizler */
+        }
+
+            .card-image img {
+                width: 100%;
+                height: auto;
+                display: block;
+            }
+
+        /* Form bölümünü ayarlayalım */
+        .card-form {
+            flex: 1;
+            padding: 20px; /* Formun içeriğini biraz içeri alalım */
+        }
+
+            /* Form alanlarını düzenleyelim */
+            .card-form input,
+            .card-form textarea {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            /* Kaydol butonunu genişletelim */
+            .card-form button {
+                width: 100%;
+            }
+
+        /* Resmin ve formun olduğu satırı ortalamak için */
+        .row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+            /* Resmin ve formun olduğu sıranın iç boşluğunu ayarlamak için */
+            .row > div {
+                padding: 0 15px;
+            }
+
+        .info-section {
+            background-color: #F4EDCC;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            width: 100%;
+        }
+    </style>
+
+
+
+</head>
+
+<body>
+
+    <div class="row mb-5 mt-5">
+        <div class="col-md-12">
+            <div class="authentication-wrapper">
+                <div class="authentication-inner">
+                    <div class="container">
+                        <div class="card-container" style="padding: 20px;">
+                    <!-- Register Card -->
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="text-center mb-4">KAYIT OL</h4>
+                            <!-- Resim Ekleme Alanı -->
+                            <div class="row mb-3">
+                                <div class="col-md-6 text-center">
+                                    <img src="~/sneat/assets/img/about1.png" alt="About Image" class="img-fluid" style="max-width: 450px;">
+                                </div>
+                                <!-- Kayıt Formu -->
+                                <div class="col-md-6">
+                                    <form asp-controller="Register" asp-action="Register" id="formAuthentication" class="mb-3" method="post">
+                                        <div asp-validation-summary="All" style="color:red"></div>
+                                        <div class="row mb-3">
+                                            <div class="col-md-6">
+                                                <label asp-for="FirstName" class="form-label" for="firstname">İsim</label>
+                                                <input asp-for="FirstName" type="text" class="form-control" id="firstname" name="firstname" placeholder="İsim" autofocus>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label asp-for="LastName" class="form-label" for="lastname">Soyisim</label>
+                                                <input asp-for="LastName" type="text" class="form-control" id="lastname" name="lastname" placeholder="Soyisim">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-md-6">
+                                                <label asp-for="PhoneNumber" class="form-label" for="phoneNumber">Telefon Numarası</label>
+                                                <input asp-for="PhoneNumber" type="text" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="Telefon Numarası">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label asp-for="Email" class="form-label" for="email">Email</label>
+                                                <input asp-for="Email" type="text" class="form-control" id="email" name="email" placeholder="Email">
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label asp-for="About" class="form-label">Hakkında</label>
+                                            <textarea asp-for="About" class="form-control" placeholder="Hakkında"></textarea>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-md-6">
+                                                <label asp-for="Password" class="form-label" for="password">Şifre</label>
+                                                <input asp-for="Password" type="password" class="form-control" id="password" name="password" placeholder="Şifre">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label asp-for="ConfirmPassword" class="form-label" for="confirmPassword">Şifre Tekrarı</label>
+                                                <input asp-for="ConfirmPassword" type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Şifre Tekrarı">
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-primary w-100">Kaydol</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Register Card -->
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="text-center mt-4" style="font-weight: bold; color: #898121;">Blog Blog tüm hakları saklıdır &copy; 2024</p>
+        </div>
+    </footer>
+
+
+
+
+
+
+    
+    <script src="~/sneat/assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="~/sneat/assets/vendor/libs/popper/popper.js"></script>
+    <script src="~/sneat/assets/vendor/js/bootstrap.js"></script>
+    <script src="~/sneat/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+    <script src="~/sneat/assets/vendor/js/menu.js"></script>
+ 
+    <script src="~/sneat/assets/js/main.js"></script>
+
+
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+</body>
+
+</html>

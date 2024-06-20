@@ -1,0 +1,151 @@
+﻿@* @model List<ArticleVM>
+
+<div class="container-xxl flex-grow-1 container-p-y">
+
+
+    <h4 class="fw-bold py-3 mb-4">
+        <span class="text-muted fw-light"> Makale Yönetimi /</span> Makaleler
+    </h4>
+
+   
+    <div class="card">
+        <div class="table-responsive text-nowrap m-3">
+
+            @{
+                @if (User.IsInRole($"{RoleConsts.Admin}"))    
+                {
+                    <a class="btn btn-primary mb-3" asp-area="Admin" asp-controller="Article" asp-action="Create">
+                        Makale Ekle <i class="bx bx-plus"></i>
+                    </a>
+                }
+            }
+
+            <table class="table table-bordered" id="articlesTable" width="100%" collspacing="0">
+                <thead>
+                    <tr>
+                        <th>Başlık</th>
+                        <th>Kategori</th>
+                        <th>Oluşturulma Tarihi</th>
+                        <th>Yazar</th>
+                        <th>Durum</th>
+                        @{
+                            @if (User.IsInRole($"{RoleConsts.Admin}"))
+                            {
+                                <th>İşlemler</th>
+                            }
+                        }
+                        
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                    @foreach (var item in Model)
+                    {
+                        <tr name="@item.Id">
+                            <td> @item.Title </td>
+                            <td> @item.Category.Name </td>
+                            <td> @item.CreatedDate.ToShortDateString() </td>
+                            <td> @item.CreatedBy </td>
+                            <td> @(item.IsDeleted ? "Aktif Değil" : "Aktif") </td>
+                            @{
+                                @if (User.IsInRole($"{RoleConsts.Admin}"))
+                                {
+                                    <td>
+                                        <a class="btn btn-primary btn-sm" data-id="@item.Id" asp-area="Admin" asp-controller="Article" asp-action="Update" asp-route-id="@item.Id">
+                                            <i class="bx bxs-edit"></i>
+                                        </a>
+
+                                        <a class="btn btn-danger btn-sm" data-id="@item.Id" asp-area="Admin" asp-controller="Article" asp-action="Delete" asp-route-id="@item.Id">
+                                            <i class="bx bx-minus-circle"></i>
+                                        </a>
+                                    </td>
+                                }
+                            }
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts{
+    <script src="~/js/articleIndex.js" type="application/ecmascript"></script>
+} *@
+
+
+
+@model List<ArticleVM>
+
+<div class="container-xxl flex-grow-1 container-p-y">
+
+    <h4 class="fw-bold py-3 mb-4">
+        <span class="text-muted fw-light">Makale Yönetimi /</span> Makaleler
+    </h4>
+
+    
+    <div class="card">
+        <div class="table-responsive text-nowrap m-3">
+
+            @{
+                if (User.IsInRole($"{RoleConsts.Admin}"))
+                {
+                    <a class="btn btn-primary mb-3" asp-area="Admin" asp-controller="Article" asp-action="Create">
+                        Makale Ekle <i class="bx bx-plus"></i>
+                    </a>
+                }
+            }
+
+            <table class="table table-bordered" id="articlesTable">
+                <thead>
+                    <tr>
+                        <th>Başlık</th>
+                        <th>Kategori</th>
+                        <th>Oluşturulma Tarihi</th>
+                        <th>Yazar</th>
+                        <th>Durum</th>
+                        @{
+                            if (User.IsInRole($"{RoleConsts.Admin}"))
+                            {
+                                <th>İşlemler</th>
+                            }
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr name="@item.Id">
+                            <td>@item.Title</td>
+                            <td>@item.Category.Name</td>
+                            <td>@item.CreatedDate.ToShortDateString()</td>
+                            <td>@item.CreatedBy</td>
+                            <td>@(item.IsDeleted ? "Aktif Değil" : "Aktif")</td>
+                            @{
+                                if (User.IsInRole($"{RoleConsts.Admin}"))
+                                {
+                                    <td>
+                                        <a class="btn btn-primary btn-sm" data-id="@item.Id" asp-area="Admin" asp-controller="Article" asp-action="Update" asp-route-id="@item.Id">
+                                            <i class="bx bxs-edit"></i>
+                                        </a>
+
+                                        <a class="btn btn-danger btn-sm" data-id="@item.Id" asp-area="Admin" asp-controller="Article" asp-action="Delete" asp-route-id="@item.Id">
+                                            <i class="bx bx-minus-circle"></i>
+                                        </a>
+                                    </td>
+                                }
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    <script src="~/js/articleIndex.js" type="text/javascript"></script>
+}
+

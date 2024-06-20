@@ -1,0 +1,16 @@
+﻿@model List<ArticleTake10VM>
+
+
+<div class="content">
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li>
+                <a asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id">
+                    <h5> @item.Title </h5>
+                    <span> <i class='bx bxs-calendar'></i> @item.CreatedDate.ToShortDateString() | <i class='bx bxs-low-vision'></i> @item.ViewCount </span>
+            </a></li>
+            @* Makale adına tıklayınca o makalenin detayı gelmesi için Detail'a yönlendirdik. *@
+        }
+    </ul>
+</div>

@@ -1,0 +1,120 @@
+﻿@model ArticleListVM
+
+<section class="blog-posts">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="all-blog-posts">
+                    <div class="row">
+                        <div class="col-lg-12">
+
+                            @foreach (var item in Model.Articles)
+                            {
+                                <div class="blog-post">
+                                    <div class="blog-thumb">
+                                        <img src="~/images/@item.Image.FileName" alt="@item.Title">
+                                    </div>
+                                    <div class="down-content">
+                                        <a asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id" style="color:darkmagenta" class="fw-bold">
+                                            <h3> @item.Title </h3>
+                                        </a>
+                                        <ul class="post-info mt-3">
+                                            <li><a asp-controller="Home" asp-action="AuthorDetail" asp-route-userId="@item.UserId"> <i class='bx bxs-user-circle'></i> @item.CreatedBy </a></li>
+                                            <li> <i class='bx bxs-calendar'></i> @item.CreatedDate.ToString("dd/MM/yyyy") </li>
+                                            <li> <i class='bx bxs-low-vision'></i> @item.ViewCount </li>
+                                        </ul>
+                                        <p>
+                                            @* Makale içeriği 250 harften büyükse 250 harf al değilse hepsini al *@
+                                            @(item.Content.Length > 250 ? item.Content.Substring(0, 250) : item.Content)...
+                                        </p>
+                                        <div class="post-options">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <ul class="post-tags">
+                                                        <li> <i class='bx bxs-purchase-tag-alt'></i> @item.Category.Name </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-6">
+                                                    <ul class="post-share">
+                                                        <li><a asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id"> <i class='bx bxs-hand-right'></i> [Devamını Oku] </a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            }
+
+                        </div>
+
+                        <div class="col-lg-12">
+                            
+
+                            <ul class="pagination justify-content-center mb-4 mt-4 btn-block">
+                                @if (Model.ShowPrevious)
+                                {
+                                    <li class="page-item">
+                                        <a class="page-link" asp-route-currentPage="@(Model.CurrentPage - 1)" asp-route-pageSize="@Model.PageSize"> Önceki </a>
+                                    </li>
+                                }
+
+                                @for (int i = 1; i < Model.TotalPages; i++)
+                                {
+                                    <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                                        <a class="page-link" asp-route-currentPage="@i" asp-route-pageSize="@Model.PageSize"> @i </a>
+                                    </li>
+                                }
+
+                                @if (Model.ShowNext)
+                                {
+                                    <li class="page-item">
+                                        <a class="page-link" asp-route-currentPage="@(Model.CurrentPage + 1)" asp-route-pageSize="@Model.PageSize" > Sonraki </a>
+                                    </li>
+                                }
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="sidebar">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="sidebar-item search">
+
+                                <form id="search_form" method="GET" asp-controller="Home" asp-action="Search">
+                                    @* metotdaki keyword parametresi bu name kısmından yollanır. buradaki isimle parametre ismi aynı olmazsa hata verir.Neşet Hoca'nın takeorder örneği gibi *@
+                                    <input type="text" name="keyword" class="searchText" placeholder="Arama yapınız" autocomplete="on">
+                                </form>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="sidebar-item recent-posts">
+                                <div class="sidebar-heading">
+                                    <h2 style="color:darkmagenta"> <i class='bx bx-book'></i> En çok okunan 10 Makale </h2>
+                                </div>
+
+                                @await Component.InvokeAsync("HomeArticles")
+
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="sidebar-item categories">
+                                <div class="sidebar-heading">
+                                    <h2 style="color:darkmagenta"> <i class='bx bxs-purchase-tag-alt'></i> Kategoriler </h2>
+                                </div>
+
+                                @await Component.InvokeAsync("HomeCategories")
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

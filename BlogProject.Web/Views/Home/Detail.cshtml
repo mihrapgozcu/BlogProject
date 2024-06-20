@@ -1,0 +1,49 @@
+﻿@model ArticleVM
+
+<section class="blog-posts">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="all-blog-posts">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="blog-post card border border-dark">
+                                <div class="blog-thumb">
+                                    <img src="~/images/@Model.Image.FileName" alt="@Model.Title">
+                                </div>
+                                <div class="down-content card-body">
+                                    <a href="#" class="post-title"><h3> @Model.Title </h3></a>
+                                    <ul class="post-info mt-3">
+                                        <li>
+                                            <a asp-controller="Home" asp-action="AuthorDetail" asp-route-userId="@Model.UserId">
+                                                <i class='bx bxs-user-circle'></i> @Model.CreatedBy
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <i class='bx bxs-calendar'></i> @Model.CreatedDate.ToString("dd/MM/yyyy")
+                                        </li>
+                                    </ul>
+                                    <p class="post-content">
+                                        @Model.Content
+                                    </p>
+                                    <div class="post-options">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <ul class="post-tags">
+                                                    <li><i class='bx bxs-purchase-tag-alt'></i> @Model.Category.Name</li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-6 text-right">
+                                                <a asp-controller="Home" asp-action="Detail" asp-route-id="@Model.Id" class="read-more">Devamını Oku</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div> 
+                    </div> 
+                </div> 
+            </div> 
+        </div>
+    </div> 
+</section>
